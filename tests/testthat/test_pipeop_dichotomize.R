@@ -17,14 +17,14 @@ test_that("PipeOpDichotomize - see if expected result is returned", {
   result = op$train(list(task))
 
   # Default parameters
-  # Checks if there are more TRUE than possible values
+  # Checks if there are more TRUE values than possible
   a = apply(as.data.frame(result[[1]]$data()[, 2:5]), MARGIN = 2,
             function(x) sum(x) <= (1 - op$param_set$values$quantile) * length(x))
   expect_true(all(a))
 
   # 0.8-quantile
   op_80 = PipeOpDichotomize$new(param_vals = list(quantile = .8))
-  # expect_pipeop(op_80)
+  expect_pipeop(op_80)
   result = op_80$train(list(task))
   b = apply(as.data.frame(result[[1]]$data()[, 2:5]), MARGIN = 2,
             function(x) sum(x) <= (1 - op$param_set$values$quantile) * length(x))

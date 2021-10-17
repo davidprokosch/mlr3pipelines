@@ -12,14 +12,16 @@ PipeOpDichotomize = R6Class("PipeOpDichotomize",
                             private = list(
 
                               .get_state_dt = function(dt, levels, target) {
+                                # quantiles for each feature
                                 quants = lapply(dt, quantile, self$param_set$values$quantile)
                                 list(quants = quants)
                               },
 
                               .transform_dt = function(dt, levels) {
+                                # transformes data with the quantiles of the training set
                                 as.data.frame(Map(function(x, y) {
                                   x > y
-                                }, dt, self$state$quants), row.names = rownames(dt))
+                                }, dt, self$state$quants))
                               }
                             )
 )
