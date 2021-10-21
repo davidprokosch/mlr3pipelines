@@ -13,7 +13,7 @@ PipeOpDichotomize = R6Class("PipeOpDichotomize",
 
                               .get_state_dt = function(dt, levels, target) {
                                 # quantiles for each feature
-                                quants = lapply(dt, quantile, self$param_set$values$quantile)
+                                quants = lapply(dt, stats::quantile, self$param_set$values$quantile)
                                 list(quants = quants)
                               },
 
