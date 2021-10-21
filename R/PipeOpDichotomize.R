@@ -19,9 +19,7 @@ PipeOpDichotomize = R6Class("PipeOpDichotomize",
 
                               .transform_dt = function(dt, levels) {
                                 # transformes data with the quantiles of the training set
-                                as.data.frame(Map(function(x, y) {
-                                  x > y
-                                }, dt, self$state$quants))
+                                dt > self$state$quants
                               }
                             )
 )
